@@ -1,2 +1,11 @@
 # Solidity-100-Days
- An extensive, highly detailed online course aimed at both beginners and experienced developers who want to gain comprehensive knowledge of Solidity and blockchain development. Spanning 100 days, the course is systematically designed to provide a deep understanding of Solidity syntax and semantics, smart contracts, various development practices, and real-world applications.
+
+## 项目介绍
+
+“Solidity-100-Days”课程是一个全方位、高度详细的在线学习项目，旨在为希望全面了解Solidity和区块链开发的初学者和有经验的开发者提供知识支持。课程跨越100天，系统地设计，旨在深入了解Solidity语法、语义、智能合约、各种开发实践和实际应用。这是一个立足于推动区块链技术在全球范围内的深入理解和广泛应用的项目。致力于为所有想要深入学习并掌握Solidity语言的人提供全方位的教育资源和实践指南。
+
+至少，从目前看，项目的愿景是：通过提供系统性、高质量的Solidity在线教程，降低学习难度，提高学习效率，使更多的开发者有能力参与到区块链技术的开发和应用中来，推动区块链技术的进步和应用的广泛性。
+
+我相信，区块链技术和智能合约有潜力改变许多行业的运作方式，包括但不限于金融、供应链、版权保护、保险、物联网、身份认证等领域。因此，希望通过“Solidity-100-Days”项目，帮助开发者们掌握这一关键的编程语言，从而能够积极地参与到这一变革中来。
+
+实际上开发项目的同时也是对于我自己的一种考验，如果有问题，或者贡献，feel free to open a pull request !
