@@ -116,8 +116,8 @@ contract Overflow {
 ```
 
 如果我们调用 `add(255, 1)` ，它会回退并消耗所有 gas ，因为结果超出了 uint8 的最大值 255 。但是如果我们调用 `uncheckedAdd(255, 1)` ，它会返回 0 ，因为结果被截断为低 8 位。
-![Overflow](100-Days\Day1-5\pic\Day3_Divide_1.PNG)
-![Overflow](.\pic\Day3_Overflow_2.PNG)
+![Overflow](./pic/Day3_Divide_1.PNG)
+![Overflow](./pic/Day3_Overflow_2.PNG)
 ##### 除法和取余运算
 
 除法和取余运算和通常理解的语义一样，但是需要注意以下几点：
@@ -144,8 +144,8 @@ contract Division {
 ```
 
 如果我们调用 `divide(7, 2)` ，它会返回 3 ，因为结果向零舍入。如果我们调用 `remainder(-7, 3)` ，它会返回 -1 ，因为结果的符号和被除数相同。
-![Divide](.\pic\Day3_Divide_1.PNG)
-![Divide](.\pic\Day3_Divide_2.PNG)
+![Divide](./pic/Day3_Divide_1.PNG)
+![Divide](./pic/Day3_Divide_2.PNG)
 
 ##### 幂运算
 
@@ -163,7 +163,7 @@ contract Power {
 ```
 
 如果我们调用 `power(2, 3)` ，它会返回 8 ，因为结果等于 `2 * 2 * 2` 。如果我们调用 `power(2, power(3, 2))` ，它会返回 512 ，因为结果等于 `2 ** (3 ** 2)` 即 `2 ** 9` 。
-![Power](.\pic\Day3_Power_1.PNG)
+![Power](./pic/Day3_Power_1.PNG)
 
 #### 固定点数
 
