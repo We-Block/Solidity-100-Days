@@ -1,0 +1,105 @@
+# Solidity基础语法 - 控制结构
+
+## 什么是控制结构？
+
+控制结构是编程语言中的一种特性，它可以让你根据不同的条件或者情况来执行不同的代码块，或者重复执行相同的代码块。控制结构可以让你的代码更加灵活和强大，也可以让你的代码更加清晰和易于维护。
+
+## Solidity中有哪些控制结构？
+
+在Solidity中，有以下几种控制结构：
+
+- 条件语句：`if`和`else`，用于根据一个布尔表达式的值来执行不同的代码块。布尔表达式是一个可以返回真（true）或者假（false）的表达式，比如比较运算符（==，!=，<，>等）或者逻辑运算符（&&，||，!等）。如果布尔表达式为真，就执行`if`后面的代码块；如果为假，就执行`else`后面的代码块（如果有的话）。你可以使用多个`else if`来表示多个条件，也可以嵌套使用`if...else`来表示复杂的逻辑。例如：
+
+```solidity
+// SPDX-License-Identifier: GPL-3.0
+pragma solidity >=0.4.22 <0.9.0;
+
+contract C {
+    function f(uint x) public pure returns (uint) {
+        if (x < 10) {
+            return 0; // 如果x小于10，返回0
+        } else if (x < 20) {
+            return 1; // 如果x在10到20之间，返回1
+        } else {
+            return 2; // 如果x大于等于20，返回2
+        }
+    }
+}
+```
+
+- 循环语句：`while`，`do...while`和`for`，用于重复执行一个代码块，直到一个条件不满足或者被中断。循环语句可以让你避免重复写相同的代码，也可以让你处理一些需要多次计算或者操作的问题。在循环语句中，有三个重要的概念：循环条件，循环体和循环变量。循环条件是一个布尔表达式，用于判断是否继续执行循环；循环体是一个代码块，用于定义每次循环要做的事情；循环变量是一个变量，用于记录循环的次数或者状态，并且在每次循环中更新。例如：
+
+```solidity
+// SPDX-License-Identifier: GPL-3.0
+pragma solidity >=0.4.22 <0.9.0;
+
+contract C {
+    function sum(uint n) public pure returns (uint) {
+        uint s = 0; // 初始化累加器为0
+        for (uint i = 1; i <= n; i++) {
+            s += i; // 对每个i从1到n，累加到s上
+        }
+        return s; // 返回s的值
+    }
+}
+```
+
+在这个例子中，我们使用了`for`循环来计算从1到n的自然数之和。`for`循环有三个部分：初始化部分（uint i = 1），条件部分（i <= n）和更新部分（i++）。初始化部分在循环开始之前执行一次，用于定义和初始化循环变量；条件部分在每次循环开始之前检查一次，用于判断是否继续执行循环；更新部分在每次循环结束之后执行一次，用于更新循环变量。循环体是花括号中的代码块（s += i），用于定义每次循环要做的事情。在这个例子中，我们把每个i加到s上，并且把s作为最终结果返回。
+
+除了`for`循环之外，还有两种常见的循环语句：`while`和`do...while`。它们都是根据一个条件来重复执行一个代码块，但是它们之间有一个区别：`while`是先检查条件再执行代码块；而`do...while`是先执行代码块再检查条件。这意味着，在某些情况下，`while`可能一次都不执行代码块；而`do...while`至少会执行一次代码块。例如：
+
+```solidity
+// SPDX-License-Identifier: GPL-3.0
+pragma solidity >=0.4.22 <0.9.0;
+
+contract C {
+    function power(uint x, uint n) public pure returns (uint) {
+        uint p = 1; // 初始化幂为1
+        while (n > 0) { // 当n大于0时
+            p *= x; // 把x乘到p上
+            n--; // 把n减1
+        }
+        return p; // 返回p的值
+    }
+}
+```
+
+在这个例子中，我们使用了`while`循环来计算x的n次方。我们定义了一个变量p作为幂，并且初始化为1。然后我们使用一个条件（n > 0）来判断是否继续执行循环。在循环体中，我们把x乘到p上，并且把n减1。这样我们就可以得到x的n次方，并且把p作为最终结果返回。
+
+```solidity
+// SPDX-License-Identifier: GPL-3.0
+pragma solidity >=0.4.22 <0.9.0;
+
+contract C {
+    function factorial(uint n) public pure returns (uint) {
+        uint f = 1; // 初始化阶乘为1
+        do { // 先执行以下代码块
+            f *= n; // 把n乘到f上
+            n--; // 把n减1
+        } while (n > 0); // 再检查n是否大于0
+        return f; // 返回f的值
+    }
+}
+```
+
+在这个例子中，我们使用了`do...while`循环来计算n的阶乘。我们定义了一个变量f作为阶乘，并且初始化为1。然后我们先执行一次代码块，在代码块中我们把n乘到f上，并且把n减1。然后我们检查n是否大于0，如果是就继续执行下一次循环；如果不是就结束循环。这样我们就可以得到n的阶乘，并且把f作为最终结果返回。
+
+- 跳转语句：`break`，`continue`和`return`，用于提前结束或者跳过循环的一次迭代，或者从函数中返回一个值。跳转语句可以让你更好地控制你的代码流程，并且避免不必要或者错误的操作。例如：
+
+```solidity
+// SPDX-License-Identifier: GPL-3.0
+pragma solidity >=0.4.22 <0.9.0;
+
+contract C {
+    function find(uint[] memory arr, uint x) public pure returns (int) {
+        for (uint i = 0; i < arr.length; i++) {
+            if (arr[i] == x) { // 如果找到了x
+                return int(i); // 返回它的索引并结束函数
+            }
+        }
+        return -1; // 如果没有找到，返回-1并结束函数
+    }
+}
+```
+
+在这个例子中，我们使用了return语句来从函数中返回一个值，并且结束函数的执行。我们定义了一个函数find来查找一个数组中是否存在某个元素x，并且返回它的索引（如果存在）
