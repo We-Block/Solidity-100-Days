@@ -116,7 +116,7 @@ contract Overflow {
 ```
 
 如果我们调用 `add(255, 1)` ，它会回退并消耗所有 gas ，因为结果超出了 uint8 的最大值 255 。但是如果我们调用 `uncheckedAdd(255, 1)` ，它会返回 0 ，因为结果被截断为低 8 位。
-![Overflow](.\pic\Day3_Overflow.PNG)
+![Overflow](100-Days\Day1-5\pic\Day3_Divide_1.PNG)
 ![Overflow](.\pic\Day3_Overflow_2.PNG)
 ##### 除法和取余运算
 
