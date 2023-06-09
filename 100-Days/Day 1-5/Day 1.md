@@ -15,7 +15,7 @@ Solidity的语法类似于JavaScript，使用花括号来定义代码块，使�
 一个简单的Solidity合约示例如下：
 
 ```solidity
-// SPDX-License-Identifier: GPL-3.0
+// SPDX-License-Identifier: MIT
 pragma solidity ^0.8.0;
 
 // 定义一个名为HelloWorld的合约

@@ -24,7 +24,7 @@ Solidity中有多种方式可以触发异常，以下是一些常见的方式：
 如果想要处理外部调用或者合约创建的异常，可以使用`try/catch`语句块。`try`语句块包含可能引发异常的代码，而`catch`语句块则用于捕获和处理异常。`catch`语句块可以有两种形式：一种是不带参数的形式，用于捕获没有数据或者未知数据格式的异常；另一种是带参数的形式，用于捕获特定类型或者格式的异常。例如：
 
 ```solidity
-// SPDX-License-Identifier: GPL-3.0
+// SPDX-License-Identifier: MIT
 pragma solidity >=0.8.0 <0.9.0;
 
 interface InfoFeed {
@@ -53,7 +53,7 @@ contract Consumer {
 如果想要传递自定义的错误数据给调用者，可以使用`revert`语句或者函数，并提供任意长度和格式的字节数组作为参数。例如：
 
 ```solidity
-// SPDX-License-Identifier: GPL-3.0
+// SPDX-License-Identifier: MIT
 pragma solidity >=0.8.0 <0.9.0;
 
 contract Token {
@@ -85,7 +85,7 @@ contract Token {
 - 使用`unchecked`语句块来关闭算术运算溢出检查。在某些情况下，你可能不想让算术运算溢出时触发Panic异常，而是让它继续执行并返回截断后的结果。这样可以节省一些gas，并且避免不必要的回退。例如：
 
 ```solidity
-// SPDX-License-Identifier: GPL-3.0
+// SPDX-License-Identifier: MIT
 pragma solidity >=0.8.0 <0.9.0;
 
 contract Overflow {
@@ -100,7 +100,7 @@ contract Overflow {
 - 使用`abi.encodeWithSelector`和`abi.encodeWithSignature`来自定义错误数据。在某些情况下，你可能想要给调用者返回一些特定类型或者格式的错误数据，而不是使用内置的Error或者Panic类型。这样可以让调用者更容易识别和处理错误。例如：
 
 ```solidity
-// SPDX-License-Identifier: GPL-3.0
+// SPDX-License-Identifier: MIT
 pragma solidity >=0.8.0 <0.9.0;
 
 contract CustomError {
@@ -120,7 +120,7 @@ contract CustomError {
 - 使用`Error(string)`和`Panic(uint256)`来创建内置的错误类型。在某些情况下，你可能想要使用内置的Error或者Panic类型来触发异常，但是又不想使用require或者assert函数。这样可以让你更灵活地控制错误信息和代码。例如：
 
 ```solidity
-// SPDX-License-Identifier: GPL-3.0
+// SPDX-License-Identifier: MIT
 pragma solidity >=0.8.0 <0.9.0;
 
 contract CustomError {

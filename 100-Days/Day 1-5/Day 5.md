@@ -11,7 +11,7 @@
 - 条件语句：`if`和`else`，用于根据一个布尔表达式的值来执行不同的代码块。布尔表达式是一个可以返回真（true）或者假（false）的表达式，比如比较运算符（==，!=，<，>等）或者逻辑运算符（&&，||，!等）。如果布尔表达式为真，就执行`if`后面的代码块；如果为假，就执行`else`后面的代码块（如果有的话）。你可以使用多个`else if`来表示多个条件，也可以嵌套使用`if...else`来表示复杂的逻辑。例如：
 
 ```solidity
-// SPDX-License-Identifier: GPL-3.0
+// SPDX-License-Identifier: MIT
 pragma solidity >=0.4.22 <0.9.0;
 
 contract C {
@@ -30,7 +30,7 @@ contract C {
 - 循环语句：`while`，`do...while`和`for`，用于重复执行一个代码块，直到一个条件不满足或者被中断。循环语句可以让你避免重复写相同的代码，也可以让你处理一些需要多次计算或者操作的问题。在循环语句中，有三个重要的概念：循环条件，循环体和循环变量。循环条件是一个布尔表达式，用于判断是否继续执行循环；循环体是一个代码块，用于定义每次循环要做的事情；循环变量是一个变量，用于记录循环的次数或者状态，并且在每次循环中更新。例如：
 
 ```solidity
-// SPDX-License-Identifier: GPL-3.0
+// SPDX-License-Identifier: MIT
 pragma solidity >=0.4.22 <0.9.0;
 
 contract C {
@@ -49,7 +49,7 @@ contract C {
 除了`for`循环之外，还有两种常见的循环语句：`while`和`do...while`。它们都是根据一个条件来重复执行一个代码块，但是它们之间有一个区别：`while`是先检查条件再执行代码块；而`do...while`是先执行代码块再检查条件。这意味着，在某些情况下，`while`可能一次都不执行代码块；而`do...while`至少会执行一次代码块。例如：
 
 ```solidity
-// SPDX-License-Identifier: GPL-3.0
+// SPDX-License-Identifier: MIT
 pragma solidity >=0.4.22 <0.9.0;
 
 contract C {
@@ -67,7 +67,7 @@ contract C {
 在这个例子中，我们使用了`while`循环来计算x的n次方。我们定义了一个变量p作为幂，并且初始化为1。然后我们使用一个条件（n > 0）来判断是否继续执行循环。在循环体中，我们把x乘到p上，并且把n减1。这样我们就可以得到x的n次方，并且把p作为最终结果返回。
 
 ```solidity
-// SPDX-License-Identifier: GPL-3.0
+// SPDX-License-Identifier: MIT
 pragma solidity >=0.4.22 <0.9.0;
 
 contract C {
@@ -87,7 +87,7 @@ contract C {
 - 跳转语句：`break`，`continue`和`return`，用于提前结束或者跳过循环的一次迭代，或者从函数中返回一个值。跳转语句可以让你更好地控制你的代码流程，并且避免不必要或者错误的操作。例如：
 
 ```solidity
-// SPDX-License-Identifier: GPL-3.0
+// SPDX-License-Identifier: MIT
 pragma solidity >=0.4.22 <0.9.0;
 
 contract C {
