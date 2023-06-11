@@ -389,4 +389,12 @@ contract Address {
 }
 ```
 
-如果我们调用 `getBalance(0xCA35b7d915458EF540aDe6068dFe2F44E8fa733c)` ，它会返回该地址的余额。如果我们调用 `getCode(0xCA35b7d915458EF540aDe6068dFe2F44E8fa733c)` ，它会返回该地址的代码（如果是合约地址）。如果我们调用 `getCodeHash(0xCA35b7d915458EF540aDe6068dFe2F44E8fa733c)` ，它会返回该地址的代码哈希（如果是合约地址）。如果我们调用 `sendEther(0xCA35b7d915458EF540aDe6068dFe2F44E8fa733c, 1 ether)` ，它会向该地址发送 1 ether 。如果我们调用 `callContract(0xCA35b7d915458EF540aDe6068dFe2F44E8fa733c, data)` ，它会向该地址发起一个 CALL ，其中 data 是要传递的数据。
+如果我们调用 `getBalance(0xCA35b7d915458EF540aDe6068dFe2F44E8fa733c)` ，它会返回该地址的余额。
+
+如果我们调用 `getCode(0xCA35b7d915458EF540aDe6068dFe2F44E8fa733c)` ，它会返回该地址的代码（如果是合约地址）。
+
+如果我们调用 `getCodeHash(0xCA35b7d915458EF540aDe6068dFe2F44E8fa733c)` ，它会返回该地址的代码哈希（如果是合约地址）。
+
+如果我们调用 `sendEther(0xCA35b7d915458EF540aDe6068dFe2F44E8fa733c, 1 ether)` ，它会向该地址发送 1 ether 。
+
+如果我们调用 `callContract(0xCA35b7d915458EF540aDe6068dFe2F44E8fa733c, data)` ，它会向该地址发起一个 CALL ，其中 data 是要传递的数据。
