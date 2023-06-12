@@ -73,7 +73,7 @@ contract Counter {
 
 以下是一个简单的示例合约，实现了一个保险合约功能，并且根据不同的角色分配不同的访问权限。
 
-```sol
+```solidity
 // SPDX-License-Identifier: MIT
 pragma solidity ^0.8.0;
 
