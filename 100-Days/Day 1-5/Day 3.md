@@ -65,6 +65,44 @@ Solidity 是一种静态类型语言，这意味着每个变量都需要在编�
 
 运算符 `||` 和 `&&` 都遵循同样的短路（ short-circuiting ）规则。就是说在表达式 `f(x) || g(y)` 中， 如果 `f(x)` 的值为 `true` ，那么 `g(y)` 就不会被执行，即使会出现一些副作用。
 
+布尔类型有以下特点：
+
+- 布尔类型由 bool 关键字表示，它们占据一个字节（8位）的存储空间。这是因为Solidity将每个变量填充到最近的8位边界。
+- 布尔类型的有效值为 true 和 false 。它们是常量字面量，可以直接在代码中使用。
+- 布尔类型可以用作函数参数、返回值、变量、常量、表达式等。
+- 布尔类型可以与同一类型的其他布尔值进行比较和赋值，但不能与其他类型的值进行比较和赋值。
+- 布尔类型可以与同一类型的其他布尔值进行逻辑运算，但不能与其他类型的值进行逻辑运算。
+
+下面是一个简单的例子，演示了如何定义和使用布尔类型：
+
+```solidity
+// SPDX-License-Identifier: MIT
+pragma solidity ^0.8.0;
+
+// 定义一个合约，演示布尔类型的用法
+contract BoolDemo {
+    // 定义一个状态变量，用bool类型初始化
+    bool public isPaid = true;
+
+    // 定义一个函数，接受一个bool类型的参数，返回一个bool类型的值
+    function changeStatus(bool _isPaid) public returns (bool) {
+        isPaid = _isPaid; // 修改状态变量的值
+        return isPaid; // 返回状态变量的值
+    }
+
+    // 定义一个函数，根据两个bool类型的参数，返回一个bool类型的值
+    function checkCondition(bool _a, bool _b) public pure returns (bool) {
+        return (_a && _b) || (!_a && !_b); // 使用逻辑运算符
+    }
+
+    // 定义一个函数，根据一个bool类型的参数，返回一个字符串类型的值
+    function getStatus(bool _isPaid) public pure returns (string memory) {
+        // 使用条件表达式
+        return _isPaid ? "Paid" : "Unpaid";
+    }
+}
+```
+
 #### 整型
 
 `int / uint` ：分别表示有符号和无符号的不同位数的整型变量。
@@ -398,3 +436,169 @@ contract Address {
 如果我们调用 `sendEther(0xCA35b7d915458EF540aDe6068dFe2F44E8fa733c, 1 ether)` ，它会向该地址发送 1 ether 。
 
 如果我们调用 `callContract(0xCA35b7d915458EF540aDe6068dFe2F44E8fa733c, data)` ，它会向该地址发起一个 CALL ，其中 data 是要传递的数据。
+
+#### enum数据类型
+
+enum数据类型是一种用户定义的值类型，它可以用来表示一组有限的常量值。例如，您可以用enum来表示不同的状态、选项、模式等。enum数据类型有以下特点：
+
+- enum必须在合约范围内定义，不能在函数内部定义。
+- enum的成员必须用逗号分隔，并用大括号括起来。
+- enum的成员不能是中文或其他非ASCII字符。
+- enum的成员不能重复或为空。
+- enum的成员默认从0开始编号，也可以用显式的整数值来指定编号。
+- enum的成员可以用点号访问，也可以用整数值进行强制转换。
+- enum的成员可以用作函数参数、返回值、变量、常量、表达式等。
+- enum的成员可以用type关键字获取其最小值和最大值。
+
+下面是一个简单的例子，演示了如何定义和使用enum数据类型：
+
+```solidity
+// SPDX-License-Identifier: MIT
+pragma solidity ^0.8.0;
+
+// 定义一个enum类型，表示不同的动物
+enum Animal {
+    Dog, // 编号为0
+    Cat, // 编号为1
+    Rabbit // 编号为2
+}
+
+contract EnumDemo {
+    // 定义一个状态变量，用enum类型初始化
+    Animal public pet = Animal.Dog;
+
+    // 定义一个函数，接受一个enum类型的参数，返回一个enum类型的值
+    function changePet(Animal _pet) public returns (Animal) {
+        pet = _pet; // 修改状态变量的值
+        return pet; // 返回状态变量的值
+    }
+
+    // 定义一个函数，返回enum类型的最小值和最大值
+    function getMinMax() public pure returns (Animal, Animal) {
+        return (type(Animal).min, type(Animal).max); // 使用type关键字获取最小值和最大值
+    }
+
+    // 定义一个函数，演示如何用整数值和点号访问enum类型的成员
+    function getAnimal(uint _index) public pure returns (Animal) {
+        require(_index <= type(Animal).max, "Invalid index"); // 检查索引是否有效
+        return Animal(_index); // 用整数值进行强制转换
+    }
+
+    function getAnimalName(Animal _animal) public pure returns (string memory) {
+        // 用点号访问enum类型的成员
+        if (_animal == Animal.Dog) {
+            return "Dog";
+        } else if (_animal == Animal.Cat) {
+            return "Cat";
+        } else if (_animal == Animal.Rabbit) {
+            return "Rabbit";
+        } else {
+            return "Unknown";
+        }
+    }
+}
+```
+### 用户定义的值类型
+
+用户定义的值类型是一种允许在一个基本的值类型上创建一个零成本的抽象的类型(比如我们之前定义的一个基于 uint256 的自定义类型 UFixed)。这类似于一个别名，但有更严格的类型要求。用户定义的值类型可以用来表示一些特定的含义或约束，例如货币单位、时间戳、角度等。用户定义的值类型有以下特点：
+
+- 用户定义的值类型是用 `type C is V` 定义的，其中 `C` 是新引入的类型的名称， `V` 必须是一个内置的值类型（“底层类型”）。
+- 用户定义的值类型可以用 `C.wrap` 函数来从底层类型转换到自定义类型，也可以用 `C.unwrap` 函数来从自定义类型转换回底层类型。
+- 用户定义的值类型可以用作函数参数、返回值、变量、常量、表达式等。
+- 用户定义的值类型可以与同一底层类型的其他用户定义的值类型进行比较和赋值，但不能与底层类型或不同底层类型的用户定义的值类型进行比较和赋值。
+- 用户定义的值类型可以与同一底层类型的其他用户定义的值类型或底层类型进行算术运算和位运算，但不能与不同底层类型的用户定义的值类型或底层类型进行算术运算和位运算。
+
+下面是一个简单的例子，演示了如何定义和使用用户定义的值类型：
+
+```solidity
+// SPDX-License-Identifier: MIT
+pragma solidity ^0.8.0;
+
+// 定义一个用户定义的值类型，表示以太币单位
+type Ether is uint256;
+
+// 定义一个用户定义的值类型，表示时间戳
+type Timestamp is uint256;
+
+contract UserDefinedValueTypeDemo {
+    // 定义一个状态变量，用Ether类型初始化
+    Ether public balance = Ether.wrap(1 ether);
+
+    // 定义一个函数，接受一个Ether类型和一个Timestamp类型的参数，返回一个Ether类型和一个Timestamp类型的元组
+    function transfer(Ether _amount, Timestamp _deadline) public returns (Ether, Timestamp) {
+        require(_amount.unwrap() <= balance.unwrap(), "Insufficient balance"); // 使用unwrap函数获取底层数值
+        require(_deadline.unwrap() > block.timestamp, "Expired deadline"); // 使用unwrap函数获取底层数值
+        balance -= _amount; // 使用算术运算符
+        return (balance, _deadline); // 返回元组
+    }
+
+    // 定义一个函数，返回Ether类型和Timestamp类型的最小值和最大值
+    function getMinMax() public pure returns (Ether, Ether, Timestamp, Timestamp) {
+        return (type(Ether).min, type(Ether).max, type(Timestamp).min, type(Timestamp).max); // 使用type关键字获取最小值和最大值
+    }
+}
+```
+
+```solidity
+// SPDX-License-Identifier: MIT
+pragma solidity ^0.8.0;
+
+// 定义一个用户定义的值类型，表示角度
+type Angle is int16;
+
+// 定义一个库，提供一些角度相关的函数
+library AngleLib {
+    // 定义一个常量，表示圆周角
+    Angle constant public FULL_CIRCLE = Angle.wrap(360);
+
+    // 定义一个函数，将角度转换为弧度
+    function toRadians(Angle _angle) public pure returns (int256) {
+        return int256(_angle.unwrap()) * 10**18 * 3141592653589793238 / int256(FULL_CIRCLE.unwrap());
+    }
+
+    // 定义一个函数，将弧度转换为角度
+    function fromRadians(int256 _radians) public pure returns (Angle) {
+        return Angle.wrap(int16(_radians * int256(FULL_CIRCLE.unwrap()) / (10**18 * 3141592653589793238)));
+    }
+
+    // 定义一个函数，计算两个角度的和
+    function add(Angle _a, Angle _b) public pure returns (Angle) {
+        return Angle.wrap(_a.unwrap() + _b.unwrap());
+    }
+
+    // 定义一个函数，计算两个角度的差
+    function sub(Angle _a, Angle _b) public pure returns (Angle) {
+        return Angle.wrap(_a.unwrap() - _b.unwrap());
+    }
+}
+
+contract UserDefinedValueTypeDemo2 {
+    // 引入库
+    using AngleLib for Angle;
+
+    // 定义一个状态变量，用Angle类型初始化
+    Angle public angle = Angle.wrap(90);
+
+    // 定义一个函数，接受一个Angle类型的参数，返回一个int256类型的值
+    function getRadians(Angle _angle) public pure returns (int256) {
+        return _angle.toRadians(); // 使用库函数
+    }
+
+    // 定义一个函数，接受一个int256类型的参数，返回一个Angle类型的值
+    function getAngle(int256 _radians) public pure returns (Angle) {
+        return Angle.fromRadians(_radians); // 使用库函数
+    }
+
+    // 定义一个函数，演示如何用wrap和unwrap函数进行类型转换
+    function convert(int16 _value) public pure returns (int16) {
+        Angle memory a = Angle.wrap(_value); // 从int16转换为Angle
+        int16 b = a.unwrap(); // 从Angle转换为int16
+        return b;
+    }
+
+    // 定义一个函数，演示如何用算术运算符和比较运算符处理Angle类型的值
+    function compare(Angle _a, Angle _b) public pure returns (bool) {
+        return (_a + _b == AngleLib.FULL_CIRCLE) && (_a > _b); // 使用加法运算符、等于运算符和大于运算符
+    }
+}
+```
